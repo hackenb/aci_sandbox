@@ -1,0 +1,9 @@
+---
+
+- name: Query all tenants
+  aci_tenant:
+    hostname: apic
+    username: admin
+    password: SomeSecretPassword
+    state: query
+
