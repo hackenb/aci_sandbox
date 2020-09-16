@@ -1,0 +1,24 @@
+---
+    - name: ENSURE APPLICATION CONFIGURATION EXISTS
+      hosts: apic
+      connection: local
+      gather_facts: False
+    
+      tasks:
+        - name: Query Tenant hacki for APs
+          aci_ap:
+            host: "{{ inventory_hostname }}"
+            username: "{{ username }}"
+            password: "{{ password }}"
+            state: "query"
+            validate_certs: no
+            tenant: hacki
+          register: prod_apps
+        
+        - name: Create a list of app names using query filter
+          set_fact:
+            apps: "{{ prod_apps | json_query('current[0].fvTenant.children[*].fvAp.attributes.name') }}"
+
+        - name: print list of apps in tenant
+          debug: var=apps
+#          debug: var=prod_apps 

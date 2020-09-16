@@ -1,0 +1,33 @@
+---
+    - name: rest call to check health of an EPG
+      hosts: apic
+      connection: local
+      gather_facts: False
+    
+      vars_prompt:
+        - name: "tenant"
+          prompt: "Which Tenant"
+          private: no
+    
+        - name: "ap"
+          prompt: "Which Application Profile?"
+          private: no
+    
+        - name: "epg"
+          prompt: "Which EPG?"
+          private: no
+
+      tasks:
+        - name: collect epg health
+          aci_rest:
+            host: "{{ inventory_hostname }}"
+            username: "{{ username }}"
+            password: "{{ password }}"
+            validate_certs: False
+            method: get
+            path: "api/mo/uni/tn-{{ tenant }}/ap-{{ ap }}/epg-{{ epg }}.json?rsp-subtree-include=health,faults,event-logs"
+          register: epg_health
+        
+        - name: print list of health children
+          debug:
+            var: epg_health.imdata.0.fvAEPg.children

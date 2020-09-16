@@ -1,0 +1,21 @@
+- name: Play 1
+  hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Task 1 - gather tenants
+      aci_tenant:
+        hostname: "{{ inventory_hostname}}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: no
+        state: query
+    
+    - name: Task 1 - gather tenants
+      aci_epg:
+        hostname: "{{ inventory_hostname}}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: no
+        state: query
