@@ -1,6 +1,6 @@
 ---
     - name: ENSURE APPLICATION CONFIGURATION EXISTS
-      hosts: apic
+      hosts: apic_ip
       connection: local
       gather_facts: False
     
@@ -8,8 +8,8 @@
         - name: Query Tenant hacki for APs
           aci_ap:
             host: "{{ inventory_hostname }}"
-            username: "{{ username }}"
-            password: "{{ password }}"
+            username: "{{ apic_username }}"
+            password: "{{ apic_password }}"
             state: "query"
             validate_certs: no
             tenant: hacki
