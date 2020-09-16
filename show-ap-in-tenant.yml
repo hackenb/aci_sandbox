@@ -8,8 +8,8 @@
         - name: Query Tenant hacki for APs
           aci_ap:
             host: "{{ inventory_hostname }}"
-            username: "{{ apic_username }}"
-            password: "{{ apic_password }}"
+            username: "admin"
+            password: "ciscopsdt"
             state: "query"
             validate_certs: no
             tenant: hacki
