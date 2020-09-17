@@ -1,0 +1,35 @@
+---
+    - name: ENSURE CONFIGURATION EXISTS
+      hosts: apic
+      connection: local
+      gather_facts: False
+    
+      vars_prompt:
+        - name: "tenant"
+          prompt: "In which Tenant do you wnat to create the BD"
+          private: no
+    
+        - name: "vrf"
+          prompt: "In which VRF do you wnat to create the BD"
+          private: no
+            
+        - name: "bd"
+          prompt: "What would you like to name Bridge Domain?"
+          private: no
+        
+        - name: "description"
+          prompt: "Description:"
+          private: no
+      
+      tasks:
+        - name: ENSURE APPLICATIONS TENANT EXISTS
+          aci_bd:
+            host: "{{ inventory_hostname }}"
+            username: "{{ username }}"
+            password: "{{ password }}"
+            state: "present"
+            validate_certs: False
+            tenant: "{{ tenant }}"
+            vrf: "{{ vrf }}"
+            bd: "{{ bd }}"
+            description: " {{ description }}"
