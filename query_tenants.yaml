@@ -1,14 +1,14 @@
 ---
 #
 - name:               Get Tenant, App Profile and EPG for host IP address Playbook
-  hosts:              "{{ apic }}"
+  hosts:              apic
   connection:         local
   gather_facts:       no
   vars:
     apic_info:        &apic_info
-      host:           "{{ apic }}"
-      username:       "{{ apic_username }}"
-      password:       "{{ apic_password }}"
+      host:           "{{ inventory_hostname }}"
+      username:       "{{ username }}"
+      password:       "{{ password }}"
     output_headers  :
     - 'Tenant  '
     - 'Contract'
