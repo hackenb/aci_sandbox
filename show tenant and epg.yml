@@ -1,0 +1,15 @@
+- name: Show Tenant and EPGs
+  hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Task 1 - gather tenants
+      aci_tenant:
+        validate_certs: no
+        state: query
+    
+    - name: Task 1 - gather epgs
+      aci_epg:
+        validate_certs: no
+        state: query
