@@ -1,0 +1,16 @@
+- name: Play Create Tenant
+  hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Task 1 - create tenant
+      aci_tenant:
+        hostname: "{{ apic_ip }}"
+        username: "{{ apic_username }}"
+        password: "{{ apic_password }}"
+        validate_certs: no
+
+        tenant: {{ fvTenant }}
+        description: Tenant {{ fvTenant }} created via Ansible
+        state: present
