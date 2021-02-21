@@ -1,0 +1,27 @@
+- name: Play Create VRF and/in Tenant
+  hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Task 1 - create tenant
+      aci_tenant:
+        hostname: "{{ apic_ip }}"
+        username: "{{ apic_username }}"
+        password: "{{ apic_password }}"
+        validate_certs: no
+
+        tenant: "{{ tenant }}"
+        description: Tenant {{ tenant }} created via Ansible
+        state: present
+
+    - name: Task 1 - create vrf in tenant
+      aci_vrf:
+        host: "{{ apic_ip }}"
+        username: "{{ apic_username }}"
+        password: "{{ apic_password }}"
+        validate_certs: no
+        state: present
+        tenant: "{{ tenant }}"
+        vrf: "{{ vrf }}"
+        description: "{{ vrfdescription }}"
