@@ -1,0 +1,10 @@
+---
+all: 
+  hosts:
+    apic: 
+      sandboxapicdc.cisco.com:
+
+  vars:
+    apic_ip: 131.226.217.153
+    apic_username: "admin"
+    apic_password: "!v3G@!4@Y"

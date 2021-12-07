@@ -1,0 +1,10 @@
+---
+all: 
+  hosts:
+    apic: 
+      devasc-aci-2.cisco.com:
+
+  vars:
+    apic_ip: 131.226.217.140
+    apic_username: "admin"
+    apic_password: "!v3G@!4@Y"
