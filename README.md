@@ -1,5 +1,3 @@
-# awx_aci_sandbox
+# sample ansible playbooks for the aci sandbox
 
-just a test
-
-yes, a test
+As is - no support at all.
